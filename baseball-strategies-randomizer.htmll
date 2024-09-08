@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Redirect</title>
+    <script>
+        window.onload = function() {
+            const urls = [
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-1-36.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-37-72.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-73-108.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-109-144.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-145-180.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-181-216.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-217-252.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-253-288.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-289-324.pdf&startIdx=1&endIdx=36",
+                "https://sktoushi.github.io/ref2409/viewer.html?&fileName=baseball-strategies-325-363.pdf&startIdx=1&endIdx=39"
+            ];
+
+            // Randomly select a URL
+            const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+
+            // Redirect to the randomly selected URL
+            window.location.href = randomUrl;
+        };
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
