@@ -25,11 +25,6 @@
         .btn-show-answers {
             margin-left: 10px;
         }
-        /* Custom style for "-------" */
-        .large-placeholder {
-            font-size: 3em; /* Very large font size */
-            font-weight: bold; /* Make it bold */
-        }
     </style>
 </head>
 <body>
@@ -51,9 +46,8 @@
         const articles = ['a', 'an', 'the'];
         const pronouns = ['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his', 'hers', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'this', 'that', 'these', 'those'];
         const prepositions = ['of', 'to', 'in', 'for', 'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over', 'after', 'beneath', 'under', 'above', 'across', 'against', 'among', 'around', 'before', 'behind', 'below', 'beside', 'between', 'beyond', 'but', 'during', 'except', 'inside', 'near', 'off', 'through', 'toward', 'upon', 'within', 'without'];
-        const verbs = ['is','are','was','were','be','being','been','am','become','becomes','do','does','did','have','has','had','can','could','will','would','shall','should','may','might'];
-        
-		const stopWords = articles.concat(pronouns, prepositions, verbs);
+
+        const stopWords = articles.concat(pronouns, prepositions);
 
         let selectedWords = [];
         let modifiedText = '';
@@ -92,7 +86,7 @@
             selectedWords.forEach(function(item) {
                 wordsToRestore[item.index] = item.word;
                 // Replace selected words with "-------" in tokens
-                tokens[item.index] = '<span class="large-placeholder">-------</span>';
+                tokens[item.index] = '-------';
             });
 
             // Create modified text
@@ -123,4 +117,14 @@
         function shuffle(array) {
             // Durstenfeld shuffle algorithm
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+    </script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
