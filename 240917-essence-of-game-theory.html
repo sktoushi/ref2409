@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap Random Words Replacement</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Optional custom styles -->
+    <style>
+        body {
+            padding: 20px;
+        }
+        .random-words {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .main-text {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .highlight {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .btn-show-answers {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="random-words">
+            <span id="random-words-display"></span>
+            <button class="btn btn-primary btn-show-answers">Show Correct Answers</button>
+        </div>
+        <div class="main-text">
+            <!-- Main text will be displayed here -->
+        </div>
+    </div>
+
+    <!-- JavaScript code -->
+    <script>
+
+        const strategies = [
+          `strategic_uncertainty_ bro_ this is the essence of chess in life_ when you’re playing any game_ this is the paranoia level dialed up to eleven_ it’s not just you guessing rock paper_ scissors_q_M but the entire scope of game theory uncertainty_ think about cold war nuclear strategies_this isn’t just your opponent’s next move_ but wondering if they even plan to make a move or if they're bluffing_ in politics_ in markets_ this is where you're stuck analyzing what they know_ what they think you know_ and what you think they think you know_ infinite recursion_ you trying to solve for every possible outcome while second-guessing every micro-action_ picture game of thrones’ littlefinger_ always plotting_ but never revealing his hand_ yet everyone’s trying to figure him out_ wondering where his allegiances lie_ it’s that dirty mind game chess match where nothing’s ever certain_ you ain't just dealing with randomness_ you're dealing with informed randomness_ and that's the key_`,
+          
+          `strategic_voting_ if you thought this was just rolling dice on a ballot_ bruh_ you’re sorely mistaken_ rollback analysis_ it's about making decisions today that look good but only because you know they’ll pay off down the road_ imagine a coalition government_ where small parties align their votes not to win today but to block a bigger threat tomorrow_ you’re out here trying to leverage your tiny bit of power by swinging votes in ways that don’t benefit you right away but kill off worse outcomes later_ it’s long-game thinking with minimal moves_ it’s playing risk and making alliances_ not to win right now_ but to not get wiped out next turn_ you’re voting tactically to maintain an equilibrium where your survival is guaranteed_`,
+          
+          `strategy_ this ain’t just picking random moves_ man_ this is the meta-plan_ think sun tzu here_ big brain warfare tactics_ all warfare is based on deception a strategy is where you go full tactician mode_ predicting moves ten turns ahead_ ever wonder why pros in games like starcraft crush newbs so easily_ they’ve got the entire map memorized_ they’ve got every potential path to victory mapped out_ and they know your counters before you’ve even built your base_ in a game_ your strategy is locking in a plan that can’t easily be countered no matter how wild the variables get_ you’re not just reacting to your opponent_ you’re orchestrating their downfall without them even realizing it_ think magnus carlsen playing ten steps ahead in chess_ you gotta create a strategy so airtight_ no matter what anyone else does_ you’ve already accounted for it_ checkmate_ losers_`,
+          
+          `subgame_ oh_ you thought this was just a side quest_q_M nah_ bro_ subgames are where the real action happens_ imagine you’re in a huge-ass rpg like final fantasy or some mmorpg_ the subgames are those mini-conflicts that seem insignificant until you realize that the outcome actually shifts the entire grand scheme of things_ subgames start at any non-initial node_ meaning you’ve deviated from the core game_ but what happens here_ the consequences ripple out into the main plot_ you might be on a side mission_ but you just recruited the best damn character in the game without realizing it_ or you’ve tripped into a death spiral that screws you for the rest of the match_ these nodes are pivotal_ mess it up in one_ and the entire game’s outcome changes_`,
+          
+          `spe_subgame-perfect_equilibrium_ this is real gangster-level game theory_ you don’t just play the game_ you play every possible variation of the game_ making zero mistakes at any level_ it’s like rollback but on every subgame and main game level_ every choice is calculated like a mathematical proof_ imagine solving not just one equation but every sub-equation that makes up the entire solution set_ matrix-level shit_ bro_ no move goes unchecked_ every branch of the game tree is solid_ and there’s no room for error_ this is the strategy that prevents your opponent from exploiting any loophole in your plan_ you make sure that even in subgames_ your strategy’s bulletproof_ that’s pro-gamer mentality_`,
+          
+          `successive_elimination_of_dominated_strategies_ this one is literally wiping away the garbage choices until only the good ones remain_ imagine you’re playing a game like magic the gathering_ you got all these cards_ but some are trash in the current meta_ successive elimination is basically the process of narrowing down your deck to the absolute fire cards that dominate in the game_ it’s removing all the clutter_ like cleaning up your room after years of hoarding junk_ by the end of it_ you’re left with nothing but game-winning strategies_ it’s a process of purging your options_one by one_until only the supreme strategies stand_`,
+          
+          `ultimatum_game_ this game will show you the cutthroat nature of negotiation_ you say_ take this offer or eat nothing we both walk away empty-handed_ it's a zero-sum setup where you are essentially forcing someone to either cave in or suffer_ it’s hardcore bargaining_ the kind you see in high-stakes diplomacy or even corporate mergers_ someone holds all the cards_ and they’re basically like_ take this five percent or i’ll make sure nobody wins_ and what’s crazy_ people actually take the lowball offer when they think it’s their last chance_ it's the final power move_either accept a raw deal or leave with nada_`,
+          
+          `utility_function_ now_ let’s dig into some real math-shit here_ utility isn’t just how much cash you stack_ it’s your internal gauge for how much you value different outcomes_ this applies to risk_ losses_ and gains_ it’s non-linear_ meaning you don’t react to a one hundred dollars win the same way you react to a one hundred dollars loss_ this is where risk aversion comes into play_ you’re not purely about stacking numbers_ you're about calculating how much each situation weighs against your internal feelings about risk_ risk-averse people would give up a little gain to avoid a bigger loss_ and the utility function quantifies that in a way that your brain can comprehend mathematically_ it explains why people will insure their one hundred dollars iphone case but won’t save for retirement_q_M they fear certain losses more than long-term unknowns_`
+        ];
+        
+        function getSecureRandomNumber() {
+          const array = new Uint32Array(1);
+          window.crypto.getRandomValues(array);
+          return array[0] / (0xFFFFFFFF + 1);
+        }
+
+        const NUM_RANDOM_WORDS = 5;
+        const MAIN_TEXT = strategies[Math.floor(getSecureRandomNumber() * strategies.length)];
+
+        const articles = ['a', 'an', 'the'];
+        const pronouns = ['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his', 'hers', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'this', 'that', 'these', 'those'];
+        const prepositions = ['of', 'to', 'in', 'for', 'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over', 'after', 'beneath', 'under', 'above', 'across', 'against', 'among', 'around', 'before', 'behind', 'below', 'beside', 'between', 'beyond', 'but', 'during', 'except', 'inside', 'near', 'off', 'through', 'toward', 'upon', 'within', 'without'];
+
+        const stopWords = articles.concat(pronouns, prepositions);
+
+        let selectedWords = [];
+        let modifiedText = '';
+        let tokens = [];
+        let wordsToRestore = {};
+
+        function getSecureRandomNumber() {
+          const array = new Uint32Array(1);
+          window.crypto.getRandomValues(array);
+          return array[0] / (0xFFFFFFFF + 1);
+        }
+
+        window.onload = function() {
+            // Simplify the logic to sanitize the text
+            let sanitizedText = MAIN_TEXT.replace(/[^a-zA-Z\s]/g, '_');
+
+            // Split into tokens (words, underscores, and spaces)
+            tokens = sanitizedText.match(/\w+|_+|\s+/g);
+
+            let candidateWords = [];
+
+            // Identify candidate words and their positions
+            for (let i = 0; i < tokens.length; i++) {
+                let token = tokens[i];
+                if (/^[a-zA-Z]+$/.test(token)) { // If token is a word
+                    if (!/\d/.test(token)) { // Exclude words with numbers
+                        let wordLower = token.toLowerCase();
+                        if (stopWords.indexOf(wordLower) === -1) { // Not a stop word
+                            candidateWords.push({ word: token, index: i });
+                        }
+                    }
+                }
+            }
+
+            // Shuffle candidate words
+            shuffle(candidateWords);
+
+            // Select NUM_RANDOM_WORDS words
+            selectedWords = candidateWords.slice(0, NUM_RANDOM_WORDS);
+
+            // Keep track of words to restore
+            selectedWords.forEach(function(item) {
+                wordsToRestore[item.index] = item.word;
+                // Replace selected words with "---------------------" in tokens
+                tokens[item.index] = '---------------------';
+            });
+
+            // Create modified text
+            modifiedText = tokens.join('');
+
+            // Shuffle words for display
+            let displayWords = selectedWords.map(item => item.word);
+            shuffle(displayWords);
+
+            // Display the random words at the top
+            let randomWordsDisplay = '[' + displayWords.join(' ') + ']';
+            document.querySelector('#random-words-display').innerHTML = randomWordsDisplay;
+
+            // Display the modified text
+            document.querySelector('.main-text').innerHTML = modifiedText;
+
+            // Set up the event listener for the button
+            document.querySelector('.btn-show-answers').addEventListener('click', function() {
+                // Replace "---------------------" with correct words
+                for (let index in wordsToRestore) {
+                    tokens[index] = '<span class="highlight">' + wordsToRestore[index] + '</span>';
+                }
+                let displayedText = tokens.join('');
+                document.querySelector('.main-text').innerHTML = displayedText;
+            });
+        };
+
+        function shuffle(array) {
+            // Durstenfeld shuffle algorithm
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(getSecureRandomNumber() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+    </script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
