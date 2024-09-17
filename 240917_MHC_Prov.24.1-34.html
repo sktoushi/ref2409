@@ -85,8 +85,8 @@
             // Keep track of words to restore
             selectedWords.forEach(function(item) {
                 wordsToRestore[item.index] = item.word;
-                // Replace selected words with "-------" in tokens
-                tokens[item.index] = '-------';
+                // Replace selected words with "---------------------" in tokens
+                tokens[item.index] = '---------------------';
             });
 
             // Create modified text
@@ -105,7 +105,7 @@
 
             // Set up the event listener for the button
             document.querySelector('.btn-show-answers').addEventListener('click', function() {
-                // Replace "-------" with correct words
+                // Replace "---------------------" with correct words
                 for (let index in wordsToRestore) {
                     tokens[index] = '<span class="highlight">' + wordsToRestore[index] + '</span>';
                 }
