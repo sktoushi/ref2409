@@ -51,37 +51,49 @@
 
         let selectedWords = [];
         let modifiedText = '';
+        let tokens = [];
+        let wordsToRestore = {};
 
         window.onload = function() {
-            // Remove punctuation and numbers from the text to get candidate words
-            let cleanedText = MAIN_TEXT.replace(/[^\w\s]|_/g, '').replace(/\d+/g, '');
-            let wordsArray = cleanedText.split(/\s+/);
+            // Simplify the logic to sanitize the text
+            let sanitizedText = MAIN_TEXT.replace(/[^a-zA-Z\s]/g, '_');
 
-            // Filter out the stop words
-            let candidateWords = wordsArray.filter(function(word) {
-                return stopWords.indexOf(word.toLowerCase()) === -1;
-            });
+            // Split into tokens (words, underscores, and spaces)
+            tokens = sanitizedText.match(/\w+|_+|\s+/g);
 
-            // Remove duplicates and convert to lowercase
-            let uniqueCandidateWords = [...new Set(candidateWords.map(word => word.toLowerCase()))];
+            let candidateWords = [];
 
-            // Shuffle the array
-            shuffle(uniqueCandidateWords);
+            // Identify candidate words and their positions
+            for (let i = 0; i < tokens.length; i++) {
+                let token = tokens[i];
+                if (/^[a-zA-Z]+$/.test(token)) { // If token is a word
+                    if (!/\d/.test(token)) { // Exclude words with numbers
+                        let wordLower = token.toLowerCase();
+                        if (stopWords.indexOf(wordLower) === -1) { // Not a stop word
+                            candidateWords.push({ word: token, index: i });
+                        }
+                    }
+                }
+            }
+
+            // Shuffle candidate words
+            shuffle(candidateWords);
 
             // Select NUM_RANDOM_WORDS words
-            selectedWords = uniqueCandidateWords.slice(0, NUM_RANDOM_WORDS);
+            selectedWords = candidateWords.slice(0, NUM_RANDOM_WORDS);
 
-            // Replace the selected words in the original text with "-------"
-            modifiedText = MAIN_TEXT.replace(/\b\w+\b/g, function(match) {
-                if (selectedWords.includes(match.toLowerCase())) {
-                    return '-------';
-                } else {
-                    return match;
-                }
+            // Keep track of words to restore
+            selectedWords.forEach(function(item) {
+                wordsToRestore[item.index] = item.word;
+                // Replace selected words with "-------" in tokens
+                tokens[item.index] = '-------';
             });
 
-            // Shuffle the selected words for display
-            let displayWords = [...selectedWords];
+            // Create modified text
+            modifiedText = tokens.join('');
+
+            // Shuffle words for display
+            let displayWords = selectedWords.map(item => item.word);
             shuffle(displayWords);
 
             // Display the random words at the top
@@ -93,13 +105,11 @@
 
             // Set up the event listener for the button
             document.querySelector('.btn-show-answers').addEventListener('click', function() {
-                let i = 0;
-                let displayedText = modifiedText.replace(/-------/g, function() {
-                    let word = '<span class="highlight">' + selectedWords[i] + '</span>';
-                    i++;
-                    return word;
-                });
-
+                // Replace "-------" with correct words
+                for (let index in wordsToRestore) {
+                    tokens[index] = '<span class="highlight">' + wordsToRestore[index] + '</span>';
+                }
+                let displayedText = tokens.join('');
                 document.querySelector('.main-text').innerHTML = displayedText;
             });
         };
