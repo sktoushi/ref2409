@@ -25,6 +25,11 @@
         .btn-show-answers {
             margin-left: 10px;
         }
+        /* Custom style for "-------" */
+        .large-placeholder {
+            font-size: 3em; /* Very large font size */
+            font-weight: bold; /* Make it bold */
+        }
     </style>
 </head>
 <body>
@@ -87,7 +92,7 @@
             selectedWords.forEach(function(item) {
                 wordsToRestore[item.index] = item.word;
                 // Replace selected words with "-------" in tokens
-                tokens[item.index] = '-------';
+                tokens[item.index] = '<span class="large-placeholder">-------</span>';
             });
 
             // Create modified text
@@ -118,14 +123,4 @@
         function shuffle(array) {
             // Durstenfeld shuffle algorithm
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-    </script>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+                const j = Math.floor
