@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap Random Words Replacement</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Optional custom styles -->
+    <style>
+        body {
+            padding: 20px;
+        }
+        .random-words {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .main-text {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .highlight {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .btn-show-answers {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="random-words">
+            <span id="random-words-display"></span>
+            <button class="btn btn-primary btn-show-answers">Show Correct Answers</button>
+        </div>
+        <div class="main-text">
+            <!-- Main text will be displayed here -->
+        </div>
+    </div>
+
+    <!-- JavaScript code -->
+    <script>
+
+        const mobKnowledge = [
+          `The End Game _ Survive _ Not Thrive _ The goal in the mob is not to be the loudest _ the richest _ or the most powerful _ The goal is to survive _ And survival means staying low _ key _ You make your money _ you handle your business _ and you do it all without anyone noticing _ Keep your head down _ keep your mouth shut _ and let the world think you _ re just another regular guy _ The second you step into the spotlight _ you _ ve already lost _ Whether it _s the cops _ your rivals _ or your own crew turning on you _ attention gets you killed _ In the mob _ staying invisible is the only way to stay alive _ _ if you get my drift _ _ _`,
+        
+          `The Feds _ They _re Watching _ So Stay Invisible _ You think the feds dont have eyes on the big players _ They _re always watching _ The flashier you are _ the more attention you draw _ the closer they watch _ The boss knows how to stay out of sight _ He knows how to keep his head down _ stay off the radar _ and avoid being a target _ The second you _re under investigation _ your world starts crumbling _ So you stay low _ key to avoid getting on their list in the first place _ The feds _ They love catching the loud ones _ The ones making too much noise _ flashing too much money _ and showing off _ But the quiet _ careful mobsters _ They keep slipping through _ You want to survive in this game _ Stay low _ key _ and the feds won _t even know you exist _ _ _`,
+        
+          `The Real Key _ dont Act Like a Mobster _ Here _s the kicker _ dont act like you _re in the mob _ The more you look like a regular guy _ the more you blend into society _ the safer you are _ The real mobsters aren _t out there bragging about their connections or flashing gold chains _ They look like everyday people _ They live in regular houses _ drive regular cars _ wear regular clothes _ You want to survive _ Act like you dont have anything going on _ Be boring _ Be low _ key _ Let the wannabes get all the attention _ You _re playing the long game _ and that means staying invisible _ _ _`,
+        
+          `Violence _ Yeah _ but Quietly _ You think the mob loves a big _ flashy shootout _ Nah _ those days are for the movies _ The real pros handle violence like everything else _ low _ key and under the radar _ A quick _ quiet hit _ A vanishing act _ You dont hear about it until the body turns up weeks later _ No witnesses _ no mess _ no news headlines _ That _s how you survive in this world _ The best hits are the ones no one knows happened _ _ _ until the target just doesn _t show up to work one day _ When you handle violence like a professional _ you dont make noise _ You dont leave traces _ You just remove the problem _ nice and clean _ Less attention means less heat _ No cops _ no feds _ no rivals looking to start a war _ It _s how the smart guys do it _ _ _`,
+        
+          `Money Laundering _ The Silent Game _ You think the mob is stashing cash in some offshore account with shady banking _ Nah _ that _s too obvious _ The real smart ones _ They _re laundering money through mom _and _pop shops _ construction companies _ and restaurants _ The kinds of businesses you wouldn _t even look twice at _ The less attention a business draws _ the better it is for funneling dirty cash through it _ That pizza shop on the corner _ Maybe it _s doing decent business _ or maybe it _s just a front for cleaning thousands of dollars in cash from the real operations _ A smart mobster doesn _t flaunt the money _ They make it look clean _ safe _ and boring _ _ _ just like any other small business _ _ if you get my drift _ _ _`,
+        
+          `Low _Key Transport _ The Art of Moving Unseen _ The flashy sports car _ That _s not how you move merchandise _ In the mob _ the key to moving goods _ whether that _s cash _ guns _ or well _ let _s just say _ other things _ _ _ is to keep it low _ key _ The boss _ He _s driving a regular car _ maybe a Chevy _ maybe a Ford _ Something that doesn _t scream attention _ You keep your transport discreet _ No flashy rims _ no tinted windows that make you look suspicious _ no roaring engines _ The real power move is moving in broad daylight while blending in with every other car on the highway _ Low _key means untraceable _ It means cops dont pull you over _ and rivals dont track your movements _ It _s how you stay in business _ _ _`,
+        
+          `The  _ Family _ Discretion Code _ Mob families have one major rule _ keep your mouth shut _ And it _s not just about talking to the cops _it _s about not talking at all _ You _re not blabbing about your _ business _ to some broad at the bar or bragging to some idiot cousin at Thanksgiving _ Loose lips sink ships _ but in the mob _ Loose lips get you and your whole crew whacked _ The boss knows everything _ But you _ You only know what you need to know _ It _s about compartmentalization _ The more low _ key you are _ the safer you are _ If you dont talk _ people can _t find out _ If they can _t find out _ you stay alive _ Keep it quiet _ keep it low _ key _ and no one _s got a reason to come knocking on your door at 3 a _m _ _ _ if you get my drift _ _ _`,
+        
+          `Why Being Flashy Gets You Whacked _ Flashiness in the mob _ Instant death sentence _ It _s all about not drawing attention _ The moment you _re the loudest one in the room _ you _ ve got a target on your back _ _ both from law enforcement and from your rivals _ Sure _ a Rolex might impress some dumbass at the bar _ but all it _s doing is signaling that you _ ve got cash that someone else might want to take _ The moment you start flashing wealth or showing off _ you _re giving everyone around you the signal _ _ I _ ve got something you want _ _ _ And that _s when people start scheming _ The mob _s got rules _ and one of the unwritten ones is to stay invisible _ Keep the profile low _ keep the cops bored _ and keep your rivals clueless _ You wanna end up in a ditch _ Start showing off _ _ _ if you get my drift _ _ _`,
+        
+          `The  Low Key  Suburban Dream _ You think those suburban soccer dads are innocent _ Nah _ that _s the real camouflage _ The smart mobsters _ They _re not living in some downtown penthouse with rooftop parties _ Nope _ They _re in the _ burbs _ mowing their lawn _ chatting with the neighbors _ looking like your average Joe _ Meanwhile _ they _re pulling off million _ dollar deals _ handling _ business _ in a way that doesn _t raise a single eyebrow _ See _ a real mob boss blends into the environment _ He doesn _t show off _ He uses the normality around him to stay invisible _ When the feds come sniffing around _ they _re not looking at the guy grilling burgers in his backyard _ they _re chasing after the guy with the flashy car and the yacht _ _ if you get my drift _ _ _`,
+        
+          `Be low _ key _ You mean survive _ _ _ if you get my drift _ _ _ The mob isn _t about flash _ it _s about longevity _ You think some loudmouth driving a Ferrari with gold chains clinking around his neck is gonna last _ Nah _ that _s how you get pinched _ The real players stay low _ key _ Everything in the mob is about moving in the shadows _ pulling strings quietly _ and avoiding the spotlight at all costs _ You blend in with the crowd _ do your business under the radar _ and the world doesn _t even know you exist _ _ _ until it _s too late _ _ _ if you get my drift _ _ _`
+        ];
+        
+        function getSecureRandomNumber() {
+          const array = new Uint32Array(1);
+          window.crypto.getRandomValues(array);
+          return array[0] / (0xFFFFFFFF + 1);
+        }
+
+        const NUM_RANDOM_WORDS = 5;
+        const MAIN_TEXT = mobKnowledge[Math.floor(getSecureRandomNumber() * strategies.length)];
+
+        const articles = ['a', 'an', 'the'];
+        const pronouns = ['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his', 'hers', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'this', 'that', 'these', 'those'];
+        const prepositions = ['of', 'to', 'in', 'for', 'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over', 'after', 'beneath', 'under', 'above', 'across', 'against', 'among', 'around', 'before', 'behind', 'below', 'beside', 'between', 'beyond', 'but', 'during', 'except', 'inside', 'near', 'off', 'through', 'toward', 'upon', 'within', 'without'];
+
+        const stopWords = articles.concat(pronouns, prepositions);
+
+        let selectedWords = [];
+        let modifiedText = '';
+        let tokens = [];
+        let wordsToRestore = {};
+
+        function getSecureRandomNumber() {
+          const array = new Uint32Array(1);
+          window.crypto.getRandomValues(array);
+          return array[0] / (0xFFFFFFFF + 1);
+        }
+
+        window.onload = function() {
+            // Simplify the logic to sanitize the text
+            let sanitizedText = MAIN_TEXT.replace(/[^a-zA-Z\s]/g, '_');
+
+            // Split into tokens (words, underscores, and spaces)
+            tokens = sanitizedText.match(/\w+|_+|\s+/g);
+
+            let candidateWords = [];
+
+            // Identify candidate words and their positions
+            for (let i = 0; i < tokens.length; i++) {
+                let token = tokens[i];
+                if (/^[a-zA-Z]+$/.test(token)) { // If token is a word
+                    if (!/\d/.test(token)) { // Exclude words with numbers
+                        let wordLower = token.toLowerCase();
+                        if (stopWords.indexOf(wordLower) === -1) { // Not a stop word
+                            candidateWords.push({ word: token, index: i });
+                        }
+                    }
+                }
+            }
+
+            // Shuffle candidate words
+            shuffle(candidateWords);
+
+            // Select NUM_RANDOM_WORDS words
+            selectedWords = candidateWords.slice(0, NUM_RANDOM_WORDS);
+
+            // Keep track of words to restore
+            selectedWords.forEach(function(item) {
+                wordsToRestore[item.index] = item.word;
+                // Replace selected words with "---------------------" in tokens
+                tokens[item.index] = '---------------------';
+            });
+
+            // Create modified text
+            modifiedText = tokens.join('');
+
+            // Shuffle words for display
+            let displayWords = selectedWords.map(item => item.word);
+            shuffle(displayWords);
+
+            // Display the random words at the top
+            let randomWordsDisplay = '[' + displayWords.join(' ') + ']';
+            document.querySelector('#random-words-display').innerHTML = randomWordsDisplay;
+
+            // Display the modified text
+            document.querySelector('.main-text').innerHTML = modifiedText;
+
+            // Set up the event listener for the button
+            document.querySelector('.btn-show-answers').addEventListener('click', function() {
+                // Replace "---------------------" with correct words
+                for (let index in wordsToRestore) {
+                    tokens[index] = '<span class="highlight">' + wordsToRestore[index] + '</span>';
+                }
+                let displayedText = tokens.join('');
+                document.querySelector('.main-text').innerHTML = displayedText;
+            });
+        };
+
+        function shuffle(array) {
+            // Durstenfeld shuffle algorithm
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(getSecureRandomNumber() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+    </script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
