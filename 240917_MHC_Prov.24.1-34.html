@@ -46,8 +46,9 @@
         const articles = ['a', 'an', 'the'];
         const pronouns = ['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his', 'hers', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'this', 'that', 'these', 'those'];
         const prepositions = ['of', 'to', 'in', 'for', 'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over', 'after', 'beneath', 'under', 'above', 'across', 'against', 'among', 'around', 'before', 'behind', 'below', 'beside', 'between', 'beyond', 'but', 'during', 'except', 'inside', 'near', 'off', 'through', 'toward', 'upon', 'within', 'without'];
-
-        const stopWords = articles.concat(pronouns, prepositions);
+        const verbs = ['is','are','was','were','be','being','been','am','become','becomes','do','does','did','have','has','had','can','could','will','would','shall','should','may','might'];
+        
+		const stopWords = articles.concat(pronouns, prepositions, verbs);
 
         let selectedWords = [];
         let modifiedText = '';
